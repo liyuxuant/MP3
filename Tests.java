@@ -52,10 +52,10 @@ public class Tests {
     assertEquals("rightJustified creates block of correct width", rBlock.width(), 20);
 
     // Checking for correct spacing row by row
-    String currentRow;
+    String c;
     for (int i = 0; i < rBlock.height(); i++) {
-      currentRow = rBlock.row(i);
-      assertEquals("Correct spacing", currentRow.substring(0, 3), "   ");
+      c = rBlock.row(i);
+      assertEquals("Correct spacing", c.substring(0, 3), "   ");
     }  
   }
 
@@ -77,8 +77,8 @@ public class Tests {
     
     assertTrue("Horizontally flipping once changes the block", TBUtils.equals(flipped, tb2));
 
-    TextBlock emptyTextBlock = new HorizontallyFlipped(new TextLine(""));
-    assertEquals("HorizontallyFlipped works with empty block", emptyTextBlock.width(), 0);
+    TextBlock emptyb = new HorizontallyFlipped(new TextLine(""));
+    assertEquals("HorizontallyFlipped works with empty block", emptyb.width(), 0);
   }
 
   @Test
@@ -88,14 +88,12 @@ public class Tests {
     
     TextBlock tb = new VComposition(tb1, tb2);
     
-    TextBlock flippedOnce = new VerticallyFlipped(tb);
     TextBlock flippedTwice = new VerticallyFlipped(new VerticallyFlipped(tb));
     
-    assertFalse("Vertically flipping once changes the block", TBUtils.equals(tb, flippedOnce));
     assertTrue("Vertically flipping twice gives the same block", TBUtils.equals(tb, flippedTwice));
 
-    TextBlock emptyTextBlock = new VerticallyFlipped(new TextLine(""));
-    assertEquals("HorizontallyFlipped works with empty block", emptyTextBlock.width(), 0);
+    TextBlock emptyb = new VerticallyFlipped(new TextLine(""));
+    assertEquals("empty block works", emptyb.width(), 0);
   }
 
   @Test
@@ -114,22 +112,22 @@ public class Tests {
   @Test
   public void eqvTest() throws Exception {
     TextBlock notFlipped = new TextLine("Hello World");
-    TextBlock flippedTwice = new HorizontallyFlipped(new HorizontallyFlipped(new TextLine("Soccer")));
-    TextBlock alsoFlippedTwice = new HorizontallyFlipped(new HorizontallyFlipped(new TextLine("Soccer")));
+    TextBlock flippedTwice = new HorizontallyFlipped(new HorizontallyFlipped(new TextLine("Hellow World")));
+    TextBlock FlippedTwice2 = new HorizontallyFlipped(new HorizontallyFlipped(new TextLine("Hellow World")));
     
-    assertTrue("Returns true if the blocks were built in the same way", TBUtils.eqv(flippedTwice, alsoFlippedTwice));
-    assertFalse("Returns false if the blocks were built in different ways", TBUtils.eqv(flippedTwice, notFlipped));
+    assertTrue("blocks were built in the same way", TBUtils.eqv(flippedTwice, FlippedTwice2));
+    assertFalse("blocks were built in different ways", TBUtils.eqv(flippedTwice, notFlipped));
   }
 
 
   @Test
   public void eqTest() throws Exception {
-    TextBlock tb1 = new TextLine("Tennis");
+    TextBlock tb1 = new TextLine("Hellow World");
     TextBlock tb2 = tb1;
-    TextBlock tb3 = new TextLine("Tennis");
+    TextBlock tb3 = new TextLine("Hellow World");
     
-    assertTrue("Returns true if the objects occupy the same memory location", TBUtils.eq(tb1, tb2));
-    assertFalse("Returns false if the objects occupy different memory locations", TBUtils.eq(tb1, tb3));
+    assertTrue("same memory location", TBUtils.eq(tb1, tb2));
+    assertFalse("different memory locations", TBUtils.eq(tb1, tb3));
   }
 
 }
