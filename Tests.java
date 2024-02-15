@@ -100,13 +100,13 @@ public class Tests {
   public void equalsTest() throws Exception {
     TextBlock tb1 = new TextLine("Hello World");
     TextBlock tb2 = new TextLine("Bye Bye");
-    TextBlock verticallyFlippedtb = new VerticallyFlipped(tb1);
+    TextBlock vftb = new VerticallyFlipped(tb1);
     
     TextBlock tb3 = new TextLine("HB");
     
-    assertFalse("Returns true if the text is the same", TBUtils.equals(tb1, tb2));
-    assertTrue("Returns true if the text is the same", TBUtils.equals(tb1, verticallyFlippedtb));
-    assertFalse("Returns false if the text is different", TBUtils.equals(tb1, tb3));
+    assertFalse("text is the same", TBUtils.equals(tb1, tb2));
+    assertTrue("text is same as well", TBUtils.equals(tb1, vftb));
+    assertFalse("text is different", TBUtils.equals(tb1, tb3));
   }
 
   @Test
