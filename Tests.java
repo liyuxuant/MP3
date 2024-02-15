@@ -36,13 +36,13 @@ public class Tests {
       assertEquals("Centered the block", centered.width(), 18);
 
       // Checking for correct spacing row by row
-      String currentRow;
+      String c;
       String message;
       for (int i = 0; i < centered.height(); i++) {
-        currentRow = centered.row(i);
+        c = centered.row(i);
         message = String.format("Correct spacing in %dth row", i);
-        assertEquals(message, currentRow.substring(0, 3), "   ");
-        assertEquals(message, currentRow.substring(currentRow.length() - 3), "   ");
+        assertEquals(message, c.substring(0, 3), "   ");
+        assertEquals(message, c.substring(c.length() - 3), "   ");
       }
   }
 
