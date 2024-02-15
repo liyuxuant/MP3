@@ -37,12 +37,10 @@ public class Tests {
 
       // Checking for correct spacing row by row
       String c;
-      String message;
       for (int i = 0; i < centered.height(); i++) {
         c = centered.row(i);
-        message = String.format("Correct spacing in %dth row", i);
-        assertEquals(message, c.substring(0, 3), "   ");
-        assertEquals(message, c.substring(c.length() - 3), "   ");
+        assertEquals("Correct spacing", c.substring(0, 3), "   ");
+        assertEquals("Correct spacing", c.substring(c.length() - 3), "   ");
       }
   }
 
@@ -55,11 +53,9 @@ public class Tests {
 
     // Checking for correct spacing row by row
     String currentRow;
-    String message;
     for (int i = 0; i < rBlock.height(); i++) {
       currentRow = rBlock.row(i);
-      message = String.format("Correct spacing in %dth row", i);
-      assertEquals(message, currentRow.substring(0, 3), "   ");
+      assertEquals("Correct spacing", currentRow.substring(0, 3), "   ");
     }  
   }
 
