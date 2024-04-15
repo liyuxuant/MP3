@@ -1,0 +1,8 @@
+{
+    "java.project.sourcePaths": [
+        "."
+    ],
+    "java.project.referencedLibraries": [
+        "/Users/pranavkbhandari/Desktop/Pranav/Courses/Sem 4/CSC-207/MPs/MP3/csc-207-mp3-master/junit-platform-console-standalone-1.10.0.jar"
+    ]
+}

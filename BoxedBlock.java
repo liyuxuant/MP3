@@ -39,15 +39,15 @@ public class BoxedBlock implements TextBlock {
     // The top and bottom of the box
     if ((i == 0) || (i == h + 1)) {
       return "+" + TBUtils.dashes(this.contents.width()) + "+";
-    }
+    } // if
     // Stuff within the box
     else if ((i > 0) && (i <= h)) {
       return "|" + this.contents.row(i - 1) + "|";
-    }
+    } // else-if
     // Everything else
     else {
       throw new Exception("Invalid row " + i);
-    }
+    } // else
   } // row(int)
 
   /**

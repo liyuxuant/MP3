@@ -11,20 +11,20 @@ public class Centered implements TextBlock {
   // | Class Fields |
   // +--------------+
 
-     TextBlock tb1;
-     int width;
+  TextBlock tb1;
+  int width;
 
   // +--------------+------------------------------------------------------
   // | Constructors |
   // +--------------+
 
-    public Centered(TextBlock tb1, int width) throws Exception {
-        if (tb1.width() > width) {
-            throw new Exception("Width must be greater than or equal to the block's width.");
-        }
-        this.tb1 = tb1;
-        this.width = width;
+  public Centered(TextBlock tb1, int width) throws Exception {
+    if (tb1.width() > width) {
+      throw new Exception("Width must be greater than or equal to the block's width.");
     }
+    this.tb1 = tb1;
+    this.width = width;
+  }
 
   // +---------+-----------------------------------------------------------
   // | Methods |
@@ -35,11 +35,15 @@ public class Centered implements TextBlock {
    * 
    * builds a new block that centers the block within that width.
    */
-    public String row(int i) throws Exception {
-        String row = tb1.row(i);
-        int padding = (width - row.length()) / 2;
-        return " ".repeat(padding) + row + " ".repeat(padding);
+  public String row(int i) throws Exception {
+    int contentWidth = tb1.width();
+    int whiteSpaceWidth = (width - contentWidth) / 2;
+
+    if ((width - contentWidth) == 1) {
+      return " " + tb1.row(i);
     }
+    return TBUtils.spaces(whiteSpaceWidth) +  tb1.row(i) + TBUtils.spaces(whiteSpaceWidth);
+  }
 
   public int height() {
     return 1;

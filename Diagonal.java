@@ -11,27 +11,27 @@ public class Diagonal implements TextBlock {
   // | Class Fields |
   // +--------------+
 
-    TextBlock tb1;
-    TextBlock tb2;
+  TextBlock tb1;
+  TextBlock tb2;
 
   // +--------------+------------------------------------------------------
   // | Constructors |
   // +--------------+
 
-   public Diagonal(TextBlock tb1, TextBlock tb2) throws Exception {
-       this.tb1 = tb1;
-       this.tb2 = tb2;
-   }
+  public Diagonal(TextBlock tb1, TextBlock tb2) throws Exception {
+    this.tb1 = tb1;
+    this.tb2 = tb2;
+  }
 
   // +---------+-----------------------------------------------------------
   // | Methods |
   // +---------+
-      /**
-   * Get one row from the block.
-   * 
-   * Combines the two textblock in a diagonal form
-   */
-   public String row(int i) throws Exception {
+  /**
+  * Get one row from the block.
+  * 
+  * Combines the two textblock in a diagonal form
+  */
+  public String row(int i) throws Exception {
 
     String padTop = TBUtils.spaces(this.tb2.width());
     String padBottom = TBUtils.spaces(this.tb1.width());
@@ -41,15 +41,15 @@ public class Diagonal implements TextBlock {
     int h = this.tb1.height() + this.tb2.height();
 
     if ((i < 0) || (i >= h)) {
-            throw new Exception("Invalid row " + i);
-    }
+      throw new Exception("Invalid row " + i);
+    } // if
     else if (i < toph) {
-        return this.tb1.row(i) + padTop;
-    }
+      return this.tb1.row(i) + padTop;
+    } // else-if
     else {
-        return padBottom + this.tb2.row(i - toph);
-    }
-   }
+      return padBottom + this.tb2.row(i - toph);
+    } // else
+  }
 
   public int height() {
     return this.tb1.height() + this.tb2.height();

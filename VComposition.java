@@ -55,25 +55,27 @@ public class VComposition implements TextBlock {
     String padbot = "";
     if (tw > bw) {
       padbot = TBUtils.spaces(tw - bw);
-    } else {
+    } // if 
+    else {
       padtop = TBUtils.spaces(bw - tw);
-    } // the bottom is wider
+    } // else (the bottom is wider)
 
     if ((i < 0) || (i >= h)) {
       throw new Exception("Invalid row " + i);
-    } else if (i < th) {
+    } // if 
+    else if (i < th) {
       return this.top.row(i) + padtop;
-    } else {
+    } //else-if 
+    else {
       return this.bottom.row(i - th) + padbot;
-    } // if the row is in the bottom half
+    } // else (if the row is in the bottom half)
   } // row(int)
 
   /**
    * Determine how many rows are in the block.
    */
   public int height() {
-    // The height is the sum of the heights of the top and bottom
-    // blocks.
+    // The height is the sum of the heights of the top and bottom blocks.
     return this.top.height() + this.bottom.height();
   } // height()
 
@@ -81,8 +83,7 @@ public class VComposition implements TextBlock {
    * Determine how many columns are in the block.
    */
   public int width() {
-    // The width is the greater of the widths of the top and bottom
-    // blocks.
+    // The width is the greater of the widths of the top and bottom blocks.
     return Math.max(this.top.width(), this.bottom.width());
   } // width()
 

@@ -3,13 +3,13 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
-public class Tests {
-  /**
- * Tests of the for MP3.
+public class TextBlockTests {
+/**
+ * Tests of the TextBlocks for MP3.
  * 
  * @author Pranav K Bhandari
  * @author Li, Yuxuan (Tony)
-   * @throws Exception
+ * @throws Exception
  * 
  */
 
@@ -35,27 +35,59 @@ public class Tests {
       
       assertEquals("Centered the block", centered.width(), 18);
 
+      // test for CenteredBlock block with equal width
+      centered = new Centered(tb1, 11);
+      assertEquals("Centered the block", centered.width(), 11);
+
       // Checking for correct spacing row by row
-      String c;
+      String c, special;
+      
       for (int i = 0; i < centered.height(); i++) {
         c = centered.row(i);
-        assertEquals("Correct spacing", c.substring(0, 3), "   ");
-        assertEquals("Correct spacing", c.substring(c.length() - 3), "   ");
+
+        if (centered.width() == tb1.width()) {
+          special = tb1.row(i);
+          assertEquals("Correct spacing", c.substring(0, 1), special.substring(0,1));
+          assertEquals("Correct spacing", c.substring(c.length() - 1), special.substring(special.length() - 1));
+        }
+        else if((centered.width() - tb1.width()) == 1) {
+          special = tb1.row(i);
+          assertEquals("Correct spacing", c.substring(0, 1), " ");
+          assertEquals("Correct spacing", c.substring(c.length() - 1), special.substring(special.length() - 1));
+        }
+        else {
+          assertEquals("Correct spacing", c.substring(0, 1), " ");
+          assertEquals("Correct spacing", c.substring(c.length() - 1), " ");
+        }
+        
+        
       }
   }
 
   @Test
   public void rightJustifiedTest() throws Exception {
-    TextBlock tb1 = new TextLine("Hellow World");
-    TextBlock rBlock = new RightJustified(tb1, 20);
+    TextBlock tb1 = new TextLine("Hello World");
+    TextBlock rBlock = new RightJustified(tb1, 15);
 
-    assertEquals("rightJustified creates block of correct width", rBlock.width(), 20);
+    assertEquals("rightJustified creates block of correct width", rBlock.width(), 15);
+
+    // test for RightJustifiedBlock block with equal width
+    rBlock = new RightJustified(tb1, 11);
+    assertEquals("rightJustified creates block of correct width", rBlock.width(), 11);
 
     // Checking for correct spacing row by row
-    String c;
+    String c, special;
     for (int i = 0; i < rBlock.height(); i++) {
       c = rBlock.row(i);
-      assertEquals("Correct spacing", c.substring(0, 3), "   ");
+
+      if(rBlock.width() == tb1.width())
+      {
+        special = tb1.row(i);
+        assertEquals("Correct spacing", c.substring(0, 1), special.substring(0, 1));
+      }
+      else {
+        assertEquals("Correct spacing", c.substring(0, 1), " ");
+      }
     }  
   }
 

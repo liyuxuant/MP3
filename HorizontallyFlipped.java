@@ -18,7 +18,7 @@ public class HorizontallyFlipped implements TextBlock {
   // +--------------+
 
   public HorizontallyFlipped(TextBlock tb1) {
-      this.tb1 = tb1;
+    this.tb1 = tb1;
   }
 
   // +---------+-----------------------------------------------------------
@@ -30,16 +30,16 @@ public class HorizontallyFlipped implements TextBlock {
    * horizontally flipe the block
    */
   public String row(int i) throws Exception {
-      return new StringBuilder(tb1.row(i)).reverse().toString();
+    return new StringBuilder(tb1.row(i)).reverse().toString();
   }
 
 
   public int height() {
-      return 1;
+    return 1;
   }
 
   public int width() {
-      return tb1.width();
+    return tb1.width();
   }
 
   /**

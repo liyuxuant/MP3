@@ -56,14 +56,16 @@ public class HComposition implements TextBlock {
     String result;
     if (i < lh) {
       result = this.left.row(i);
-    } else {
+    } // if
+    else {
       result = TBUtils.spaces(this.left.width());
-    }
+    } // else
     if (i < rh) {
       result = result.concat(this.right.row(i));
-    } else {
+    } // if 
+    else {
       result = result.concat(TBUtils.spaces(this.right.width()));
-    }
+    } // else
 
     return result;
   } // row(int)
