@@ -46,7 +46,7 @@ public class Centered implements TextBlock {
   }
 
   public int height() {
-    return 1;
+    return tb1.height();
   } // height()
 
   public int width() {

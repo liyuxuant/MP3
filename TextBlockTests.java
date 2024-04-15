@@ -9,6 +9,8 @@ public class TextBlockTests {
  * 
  * @author Pranav K Bhandari
  * @author Li, Yuxuan (Tony)
+ * Includes tests for each of the different kinds 
+ * of text blocks as parameters to other text blocks (or themselves).
  * @throws Exception
  * 
  */
@@ -17,11 +19,14 @@ public class TextBlockTests {
   @Test
   public void truncatedTest() throws Exception  {
     TextBlock tb1 = new TextLine("Hello, World");
+    TextBlock tb2 = new Truncated(tb1, 6);
     TextBlock empty = new TextLine("");
     int maxWidth = 3;
     
-    TextBlock truncated = new Truncated(tb1, maxWidth);
-    assertEquals("width equals max_width", truncated.width(), 3) ;
+    TextBlock truncated1 = new Truncated(tb1, maxWidth);
+    TextBlock truncated2 = new Truncated(tb2, maxWidth);
+    assertEquals("width equals max_width", truncated1.width(), 3) ;
+    assertEquals("width equals max_width", truncated2.width(), 3) ;
     
     TextBlock emptyt = new Truncated(empty, 0);
     assertEquals("width equals 0", emptyt.width(), 0) ;
@@ -30,27 +35,32 @@ public class TextBlockTests {
 
   @Test
   public void centeredTest () throws Exception {
-      TextBlock tb1 = new TextLine("Hello World");
-      TextBlock centered = new Centered(tb1, 18);
+      TextBlock tb1 = new TextLine("HelloWorld");
+      TextBlock tb2 = new Truncated(tb1, 6);
+      TextBlock centered1 = new Centered(tb1, 18);
+      TextBlock centered2 = new Centered(tb2, 18);
       
-      assertEquals("Centered the block", centered.width(), 18);
+      assertEquals("Centered the block", centered1.width(), 18);
+      assertEquals("Centered the block", centered1.row(0), "    HelloWorld    ");
+      assertEquals("Centered the block", centered2.row(0), "      HelloW      ");
+
 
       // test for CenteredBlock block with equal width
-      centered = new Centered(tb1, 11);
-      assertEquals("Centered the block", centered.width(), 11);
+      centered1 = new Centered(tb1, 11);
+      assertEquals("Centered the block", centered1.width(), 11);
 
       // Checking for correct spacing row by row
       String c, special;
       
-      for (int i = 0; i < centered.height(); i++) {
-        c = centered.row(i);
+      for (int i = 0; i < centered1.height(); i++) {
+        c = centered1.row(i);
 
-        if (centered.width() == tb1.width()) {
+        if (centered1.width() == tb1.width()) {
           special = tb1.row(i);
           assertEquals("Correct spacing", c.substring(0, 1), special.substring(0,1));
           assertEquals("Correct spacing", c.substring(c.length() - 1), special.substring(special.length() - 1));
         }
-        else if((centered.width() - tb1.width()) == 1) {
+        else if((centered1.width() - tb1.width()) == 1) {
           special = tb1.row(i);
           assertEquals("Correct spacing", c.substring(0, 1), " ");
           assertEquals("Correct spacing", c.substring(c.length() - 1), special.substring(special.length() - 1));
